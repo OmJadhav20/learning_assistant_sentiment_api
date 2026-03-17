@@ -23,13 +23,14 @@ async def analyze_sentiment(request: SentimentRequest):
         scores=sia.polarity_scores(text)
         results.append(scores['compound'])
     results_avg=sum(results)/len(results)
-    final_result=0
+    '''final_result=0
     if results_avg<0:
         final_result=-1
     if results_avg>0:
-        final_result=1
+        final_result=1'''
 
     return{
         "status":"success",
-        "result":final_result,
+        "result":results_avg,
+        
     }
