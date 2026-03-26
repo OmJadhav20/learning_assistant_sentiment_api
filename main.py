@@ -32,5 +32,10 @@ async def analyze_sentiment(request: SentimentRequest):
     return{
         "status":"success",
         "result":results_avg,
-        
+    }
+
+@app.get("/home")
+async def home():
+    return {
+        "status": "success",
     }
