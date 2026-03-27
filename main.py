@@ -2,6 +2,7 @@ from fastapi import FastAPI,HTTPException
 from pydantic import BaseModel
 from nltk.sentiment import SentimentIntensityAnalyzer
 import nltk
+from fastapi.middleware.cors import CORSMiddleware
 
 nltk.download('vader_lexicon')
 
@@ -11,6 +12,13 @@ sia=SentimentIntensityAnalyzer()
 class SentimentRequest(BaseModel):
     text :list[str]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 @app.post("/analyze")
 async def analyze_sentiment(request: SentimentRequest):
